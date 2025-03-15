@@ -172,7 +172,7 @@ def load_csm_1b(ckpt_path: str = "ckpt.pt", device: str = "cuda") -> Generator:
         audio_num_codebooks=32,
     )
     model = Model(model_args).to(device=device, dtype=torch.bfloat16)
-    state_dict = torch.load(ckpt_path)
+    state_dict = torch.load(ckpt_path, weights_only=True)
     model.load_state_dict(state_dict)
 
     generator = Generator(model)
